@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Hello ! Welcome to Python Courses.</h1>
+<br>
+<h2>Topic List:</h2>
+
+{% if topic_list %}
+<ul>
+    {% for topic in topic_list %}
+        <li>
+            <a href="{% url 'topic' topic.id %}">{{ topic.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No Topic available</p>
+{% endif %}
+<br>
+<br>
+<div>
+    <a href="{% url 'create' %}">Create Resources</a>
+</div>
+
+
+{% endblock %}

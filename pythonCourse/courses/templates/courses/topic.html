@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Topic{% endblock %}
+
+{% block content %}
+<h1>{{ topic.name }}</h1>
+<br>
+<h2>Content List:</a></h2>
+
+{% if content_list %}
+<ul>
+    {% for content in content_list %}
+        <li>
+            <a href="/courses/topic/{{ content.topic.id }}/content/{{ content.id }}/">{{ content.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No Content available</p>
+{% endif %}
+
+{% endblock %}
