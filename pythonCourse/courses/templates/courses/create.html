@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %}Create Resources{% endblock %}
-
 {% block content %}
-<h1>Create some resources for Python Course</h1>
-<br>
-<br>
-<h3><a href="{% url 'createTopic' %}">Create a Topic</a></h3>
-<br>
-<h3><a href="{% url 'createContent' %}">Create a Content</a></h3>
-
+  <h1>Create some resources for Python Course</h1>
+  <br />
+  <br />
+  <h3>
+    <a href="{% url 'courses:createTopic' %}">Create a Topic</a>
+  </h3>
+  <br />
+  <h3>
+    <a href="{% url 'courses:createContent' %}">Create a Content</a>
+  </h3>
 {% endblock %}

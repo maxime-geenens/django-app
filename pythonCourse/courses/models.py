@@ -6,7 +6,7 @@ from .utils.dateUtils import when_was_created
 
 class Topic(Model):
     name = CharField(max_length=50)
-    creation_date = DateTimeField('date created')
+    creation_date = DateTimeField(auto_now_add=True)
     created_by = CharField(max_length=50)
 
     def __str__(self) -> str:
@@ -17,6 +17,10 @@ class Topic(Model):
 
 
 class Content(Model):
+    '''
+        Content in a Topic
+        Can be seen as a chapter
+    '''
     topic = ForeignKey(Topic, on_delete=CASCADE)
     name = CharField(max_length=50)
     description = TextField()
@@ -25,29 +29,29 @@ class Content(Model):
         return "Content: {} || Belongs to Topic: {}".format(self.name, self.topic.name)
 
 
-class ContentPart(Model):
-    content = ForeignKey(Content, on_delete=CASCADE)
-    order = IntegerField(unique=True)
-    title = CharField(max_length=50)
-    text = TextField()
-
-    def __str__(self) -> str:
-        return "ContentPart nº{}: {} || Belongs to Content: {}".format(self.order, self.title, self.content.name)
-
-
-class LineType(Model):
+class ContentType(Model):
+    '''
+        Type of a content part
+        Can be text/code/...
+    '''
     name = CharField(max_length=50)
     description = CharField(max_length=200)
 
     def __str__(self) -> str:
-        return "Line Type: {}".format(self.name)
+        return "Content Type: {}".format(self.name)
 
 
-class ContentLine(Model):
-    type = ForeignKey(LineType, on_delete=CASCADE)
-    content_part = ForeignKey(ContentPart, on_delete=CASCADE)
-    order = IntegerField(unique=True)
-    text = TextField()#try to save some text from sql
+class ContentPart(Model):
+    '''
+        ContentPart in a Content
+        Can be seen as a section
+            section_number reflects the order the content part is displayed
+    '''
+    content = ForeignKey(Content, on_delete=CASCADE)
+    type = ForeignKey(ContentType, on_delete=CASCADE)
+    section_number = IntegerField()
+    title = CharField(max_length=150)
+    text = TextField()
 
     def __str__(self) -> str:
-        return "ContentLine nº{} of ContentPart: {}".format(self.order, self.content_part.title)
+        return "Content Part nº{}".format(self.section_number)

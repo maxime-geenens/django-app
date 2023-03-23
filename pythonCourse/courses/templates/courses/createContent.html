@@ -1,11 +1,27 @@
 {% extends "base.html" %}
-{% load static %}
-
-{% block title %}Create Contents{% endblock %}
-
+{% block csshead %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'courses/css/style2.css' %}"/>
+{% endblock %}
+{% block title %}Create Contents{%  endblock %}
 {% block content %}
-<h1>Create some Contents</h1>
-<br>
-<br>
-
+  <div class="createScreenWrapper">
+    <div class="head">
+      <h1>Create some Contents</h1>
+    </div>
+    <div class="form">
+      <form action="{% url 'courses:createContent' %}" method="post">
+        <fieldset>
+          <legend>
+            <h5>Create a Content</h5>
+          </legend>
+          {% csrf_token %}
+          <div class="contentFieldWrapper">{{ form }}</div>
+        </fieldset>
+        <br/>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
+    </div>
+    <div class="list">List</div>
+  </div>
 {% endblock %}
