@@ -1,15 +1,31 @@
 {% extends "base.html" %}
-{% load static %}
+{% block csshead %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'courses/css/createScreen.css' %}"/>
+{% endblock %}
+{% load crispy_forms_tags %}
 {% block title %}Create Resources{% endblock %}
 {% block content %}
-  <h1>Create some resources for Python Course</h1>
-  <br />
-  <br />
-  <h3>
-    <a href="{% url 'courses:createTopic' %}">Create a Topic</a>
-  </h3>
-  <br />
-  <h3>
-    <a href="{% url 'courses:createContent' %}">Create a Content</a>
-  </h3>
+  <div class="createWrapper">
+    <h1 class="head">Create some resources for Python Course</h1>
+    <div class="list">
+      <ul>
+        <li>
+          <h4>
+            <a href="{% url 'courses:createTopic' %}">Create Topic</a>
+          </h4>
+        </li>
+        <li>
+          <h4>
+            <a href="{% url 'courses:createContent' %}">Create Content</a>
+          </h4>
+        </li>
+        <li>
+          <h4>
+            <a href="{% url 'courses:createContentPart' %}">Create a Content Part</a>
+          </h4>
+        </li>
+      </ul>
+    </div>
+  </div>
 {% endblock %}

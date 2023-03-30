@@ -1,3 +1,16 @@
+/* CREATE */
+.createWrapper {
+  display: grid;
+  grid-template-areas:
+    "head"
+    "list";
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.25fr 1fr;
+  gap: 5%;
+  padding: 1%;
+}
+
+/* CREATE SCREEN */
 .createScreenWrapper {
   display: grid;
   grid-template-areas:
@@ -11,6 +24,7 @@
 
 .head {
   grid-area: head;
+  padding: 1%;
   text-align: center;
 }
 

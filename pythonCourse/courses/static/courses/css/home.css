@@ -1,0 +1,24 @@
+/* HOME */
+.homeScreenWrapper {
+  display: grid;
+  grid-template-areas:
+    "head"
+    "img";
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr, 1fr;
+  gap: 1%;
+  padding: 5%;
+  align-content: center;
+}
+
+.head {
+  grid-area: head;
+  text-align: center;
+}
+
+.img {
+  grid-area: img;
+  width: 100%;
+  padding: 5%;
+  text-align: center;
+}

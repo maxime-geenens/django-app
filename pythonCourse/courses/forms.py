@@ -23,9 +23,20 @@ class ContentForm(ModelForm):
             "topic": "Topic",
             "description": "Description",
         }
+        widgets = {"description": Textarea(attrs={'rows': 2})}
 
 
-class ContentPart(ModelForm):
+class ContentListForm(ModelForm):
+    class Meta:
+        model = Content
+        fields = ["topic",]
+        labels = {
+            "topic": "Topic",
+        }
+        widgets = {'topic': Select(attrs={'onChange': 'submit();'})}
+
+
+class ContentPartForm(ModelForm):
 
     class Meta:
         model = ContentPart

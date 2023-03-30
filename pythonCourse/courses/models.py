@@ -10,7 +10,7 @@ class Topic(Model):
     created_by = CharField(max_length=50)
 
     def __str__(self) -> str:
-        return "{} created by: {} on: {}".format(self.name, self.created_by, self.creation_date)
+        return "{}".format(self.name)
 
     def created_recently(self):
         return when_was_created(self.creation_date)

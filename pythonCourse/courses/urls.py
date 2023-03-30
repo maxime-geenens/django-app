@@ -8,6 +8,7 @@ urlpatterns = [
     path('topic/<int:pk>/', topic, name='topic'),
     path('topic/<int:topic_id>/content/<int:pk>/', content, name='content'),
     path('create/', create, name='create'),
-    path('createContent/', createContent, name='createContent'),
     path('createTopic/', createTopic, name='createTopic'),
+    path('createContent/', createContent, name='createContent'),
+    path('createContentPart/', createContentPart, name='createContentPart'),
 ]

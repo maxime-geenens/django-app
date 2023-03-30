@@ -1,0 +1,28 @@
+.contentWrapper {
+  display: grid;
+  grid-template-areas:
+    "head head head"
+    "content content list";
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: 0.25fr 1fr;
+  gap: 5%;
+  padding: 1%;
+}
+
+.head {
+  grid-area: head;
+  padding: 1%;
+  text-align: center;
+}
+
+.content {
+  grid-area: content;
+  padding: 1%;
+  border: 1px solid gray;
+}
+
+.list {
+  grid-area: list;
+  padding: 1%;
+  border: 1px solid gray;
+}

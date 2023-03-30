@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block csshead %}
   {% load static %}
-  <link rel="stylesheet" href="{% static 'courses/css/style2.css' %}"/>
+  <link rel="stylesheet" href="{% static 'courses/css/createScreen.css' %}"/>
 {% endblock %}
+{% load crispy_forms_tags %}
 {% block title %}Create Contents{%  endblock %}
 {% block content %}
   <div class="createScreenWrapper">
@@ -16,12 +17,30 @@
             <h5>Create a Content</h5>
           </legend>
           {% csrf_token %}
-          <div class="contentFieldWrapper">{{ form }}</div>
+          {{ form|crispy }}
         </fieldset>
-        <br/>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <div class="button">
+          <button type="submit" class="btn">Create</button>
+        </div>
       </form>
     </div>
-    <div class="list">List</div>
+    <div class="list">
+      <h5>Content List</h5>
+      <form method="get" id="contents-form">
+        {% csrf_token %}
+        {{ form2|crispy }}
+      </form>
+      {% if content_list %}
+        <ul>
+          {% for content in content_list %}
+            <li>
+              <a href="{% url 'courses:content' content.topic.id content.id %}">{{ content.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No Content related to selected Topic has been created yet</p>
+      {% endif %}
+    </div>
   </div>
 {% endblock %}

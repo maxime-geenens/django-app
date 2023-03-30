@@ -1,30 +1,50 @@
 {% extends "base.html" %}
-{% load static %}
+{% block csshead %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'courses/css/content.css' %}"/>
+{% endblock %}
+{% load crispy_forms_tags %}
 {% block title %}Content{% endblock %}
 {% block content %}
-  <h1>{{ content.name }}</h1>
-  <br />
-  <br />
-  {% if content_part_list %}
-    <ul>
-      {% for content_part in content_parts %}
-        <li>
-          <h3>{{ content_part.title }}</h3>
-          <div>
-            {% if content_part.type == "code" %}
-              <pre class="code">
-        <code class="code">
-          {{ content_part.text|linebreaks }}
-        </code>
-      </pre>
-            {% else %}
-              <p class="{{ content_part.type }}">{{ content_part.text }}</p>
-            {% endif %}
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No Content Part available</p>
-  {% endif %}
+  <div class="contentWrapper">
+    <h1 class="head">{{ content.name }}</h1>
+    <div class="content">
+      {% if content_part_list %}
+        <ul>
+          {% for content_part in content_parts %}
+            <li>
+              <h3>{{ content_part.title }}</h3>
+              <div>
+                {% if content_part.type == "code" %}
+                  <pre class="code">
+                    <code class="code">
+                      {{ content_part.text|linebreaks }}
+                    </code>
+                  </pre>
+                {% else %}
+                  <p class="{{ content_part.type }}">{{ content_part.text }}</p>
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No Content Part available</p>
+      {% endif %}
+    </div>
+    <div class="list">
+      <h4>{{ content.topic.name }}: </h4>
+      {% if content_list %}
+        <ul>
+          {% for content in content_list %}
+            <li>
+              <a href="{% url 'courses:content' content.topic.id content.id %}">{{ content.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No Content available</p>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}
