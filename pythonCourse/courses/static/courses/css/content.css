@@ -26,3 +26,25 @@
   padding: 1%;
   border: 1px solid gray;
 }
+
+.text {
+  color: black;
+}
+
+.code {
+  background-color: rgb(27, 25, 25);
+  color: antiquewhite;
+  border: 1px solid #999;
+  display: block;
+  padding: 1%;
+}
+
+.subtitle {
+  color: brown;
+  font-weight: bold;
+}
+
+.note {
+  color: darkslategray;
+  font-style: italic;
+}

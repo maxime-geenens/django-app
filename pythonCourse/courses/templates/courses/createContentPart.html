@@ -4,17 +4,17 @@
   <link rel="stylesheet" href="{% static 'courses/css/createScreen.css' %}"/>
 {% endblock %}
 {% load crispy_forms_tags %}
-{% block title %}Create Contents{%  endblock %}
+{% block title %}Create Content Parts{%  endblock %}
 {% block content %}
   <div class="createScreenWrapper">
     <div class="head">
-      <h1>Create some Contents</h1>
+      <h1>Create some Content Parts</h1>
     </div>
     <div class="form">
-      <form action="{% url 'courses:createContent' %}" method="post">
+      <form action="{% url 'courses:createContentPart' %}" method="post">
         <fieldset>
           <legend>
-            <h5>Create a Content</h5>
+            <h5>Create a Content Part</h5>
           </legend>
           {% csrf_token %}
           {{ form|crispy }}
@@ -25,16 +25,16 @@
       </form>
     </div>
     <div class="list">
-      <h5>Content List</h5>
+      <h5>Content Part List</h5>
       <form method="get">
         {% csrf_token %}
         {{ form2|crispy }}
       </form>
-      {% if content_list %}
+      {% if content_part_list %}
         <ul>
-          {% for content in content_list %}
+          {% for content_part in content_part_list %}
             <li>
-              <a href="{% url 'courses:content' content.topic.id content.id %}">{{ content.name }}</a>
+              <a href="{% url 'courses:content' content_part.content.topic.id content_part.content.id %}">{{ content_part.section_number }}: {{ content_part.title }}</a>
             </li>
           {% endfor %}
         </ul>

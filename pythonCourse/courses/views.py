@@ -93,4 +93,33 @@ def createContent(request):
 
 
 def createContentPart(request):
-    pass
+    cp = ContentPart()
+    if request.method == "POST":
+        form = ContentPartForm(request.POST, instance=cp)
+        if form.is_valid():
+            content_parts = ContentPart.objects.all().filter(
+                content=form.data["content"])
+            order = len(content_parts) + 1
+            new_part = form.save(commit=False)
+            new_part.section_number = order
+            new_part.save()
+            form.save_m2m()
+    else:
+        form = ContentPartForm()
+
+    content_part_list = []
+
+    if request.method == "GET":
+        form2 = ContentPartListForm(request.GET)
+        selected_content = request.GET.get("content")
+        content_part_list = ContentPart.objects.all().filter(content=selected_content)
+    else:
+        form2 = ContentListForm()
+
+    context = {
+        'form': form,
+        'form2': form2,
+        'content_part_list': content_part_list
+    }
+
+    return render(request, 'courses/createContentPart.html', merge(base_context, context))

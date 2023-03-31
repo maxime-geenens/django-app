@@ -26,7 +26,7 @@ class Content(Model):
     description = TextField()
 
     def __str__(self) -> str:
-        return "Content: {} || Belongs to Topic: {}".format(self.name, self.topic.name)
+        return "{}".format(self.name)
 
 
 class ContentType(Model):
@@ -38,7 +38,7 @@ class ContentType(Model):
     description = CharField(max_length=200)
 
     def __str__(self) -> str:
-        return "Content Type: {}".format(self.name)
+        return "{}".format(self.name)
 
 
 class ContentPart(Model):

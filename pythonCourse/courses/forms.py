@@ -40,10 +40,22 @@ class ContentPartForm(ModelForm):
 
     class Meta:
         model = ContentPart
-        fields = ["title", "type", "section_number", "text"]
+        fields = ["title", "content", "type", "text"]
         labels = {
             "title": "Title",
+            "content": "Content",
             "type": "Type",
-            "section_number": "Order",
             "text": "Content",
         }
+        widgets = {
+            "text": Textarea(attrs={'rows': 2}),
+        }
+
+class ContentPartListForm(ModelForm):
+    class Meta:
+        model = ContentPart
+        fields = ["content",]
+        labels = {
+            "content": "Content",
+        }
+        widgets = {'content': Select(attrs={'onChange': 'submit();'})}

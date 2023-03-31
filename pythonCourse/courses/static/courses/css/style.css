@@ -2,20 +2,3 @@
 body {
   background-color: rgb(211, 193, 193);
 }
-
-.text {
-  color: black;
-}
-
-.code {
-  background-color: rgb(27, 25, 25);
-  color: antiquewhite;
-  border: 1px solid #999;
-  display: block;
-  padding: 20px;
-}
-
-.subtitle {
-  color: brown;
-  font-weight: bold;
-}

@@ -9,20 +9,24 @@
   <div class="contentWrapper">
     <h1 class="head">{{ content.name }}</h1>
     <div class="content">
-      {% if content_part_list %}
+      {% if content_parts %}
         <ul>
           {% for content_part in content_parts %}
             <li>
-              <h3>{{ content_part.title }}</h3>
+              <div class="subtitle">
+                <h3>{{ content_part.title }}</h3>
+              </div>
               <div>
                 {% if content_part.type == "code" %}
-                  <pre class="code">
+                  
                     <code class="code">
                       {{ content_part.text|linebreaks }}
                     </code>
-                  </pre>
+                  
                 {% else %}
-                  <p class="{{ content_part.type }}">{{ content_part.text }}</p>
+                  <div class="{{ content_part.type }}">
+                    <p>{{ content_part.text|linebreaks }}</p>
+                  </div>
                 {% endif %}
               </div>
             </li>
@@ -33,7 +37,7 @@
       {% endif %}
     </div>
     <div class="list">
-      <h4>{{ content.topic.name }}: </h4>
+      <h4>{{ content.topic.name }}:</h4>
       {% if content_list %}
         <ul>
           {% for content in content_list %}
