@@ -14,17 +14,19 @@
           {% for content_part in content_parts %}
             <li>
               <div class="subtitle">
-                <h3>{{ content_part.title }}</h3>
+                <h5>{{ content_part.title }}</h5>
               </div>
               <div>
-                {% if content_part.type == "code" %}
-                  
-                    <code class="code">
-                      {{ content_part.text|linebreaks }}
-                    </code>
-                  
+                {% if content_part.type_id == 2 %}
+                  <code class="code">
+                    {{ content_part.text|linenumbers|linebreaks }}
+                  </code>
+                {% elif content_part.type_id == 3 %}
+                  <div class="note">
+                    <p>{{ content_part.text|linebreaks }}</p>
+                  </div>
                 {% else %}
-                  <div class="{{ content_part.type }}">
+                  <div class="text">
                     <p>{{ content_part.text|linebreaks }}</p>
                   </div>
                 {% endif %}

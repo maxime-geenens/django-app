@@ -34,7 +34,8 @@ def topic(request, pk):
 def content(request, topic_id, pk):
     try:
         content = Content.objects.get(pk=pk)
-        content_part_list = ContentPart.objects.filter(content=content)
+        content_part_list = ContentPart.objects.filter(
+            content=content).order_by('section_number')
         topic = Topic.objects.get(pk=topic_id)
         content_list = Content.objects.filter(topic=topic)
     except Content.DoesNotExist:
