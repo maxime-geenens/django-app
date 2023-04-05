@@ -1,0 +1,12 @@
+services:
+  python-course:
+    build:
+      dockerfile: Dockerfile
+    environment:
+      MYENV: DEV
+    volumes:
+      - .:/home/app/webapp
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    

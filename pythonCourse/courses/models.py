@@ -6,8 +6,10 @@ from .utils.dateUtils import when_was_created
 
 class Topic(Model):
     name = CharField(max_length=50)
-    creation_date = DateTimeField(auto_now_add=True)
     created_by = CharField(max_length=50)
+    creation_date = DateTimeField(auto_now_add=True)
+    last_update_user = CharField(max_length=50)
+    last_update = DateTimeField()
 
     def __str__(self) -> str:
         return "{}".format(self.name)
@@ -24,6 +26,10 @@ class Content(Model):
     topic = ForeignKey(Topic, on_delete=CASCADE)
     name = CharField(max_length=50)
     description = TextField()
+    created_by = CharField(max_length=50)
+    creation_date = DateTimeField(auto_now_add=True)
+    last_update_user = CharField(max_length=50)
+    last_update = DateTimeField()
 
     def __str__(self) -> str:
         return "{}".format(self.name)
@@ -52,6 +58,10 @@ class ContentPart(Model):
     section_number = IntegerField()
     title = CharField(max_length=150)
     text = TextField()
+    created_by = CharField(max_length=50)
+    creation_date = DateTimeField(auto_now_add=True)
+    last_update_user = CharField(max_length=50)
+    last_update = DateTimeField()
 
     def __str__(self) -> str:
         return "Content Part nº{}".format(self.section_number)

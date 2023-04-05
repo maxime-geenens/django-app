@@ -1,0 +1,99 @@
+# ContentType
+- model: courses.contenttype
+  pk: 1
+  fields:
+    name: text
+    description: A simple text content
+- model: courses.contenttype
+  pk: 2
+  fields:
+    name: code
+    description: A code formatted content
+- model: courses.contenttype
+  pk: 3
+  fields:
+    name: note
+    description: A simple comment/remark content
+
+# Topic
+- model: courses.topic
+  pk: 1
+  fields:
+    name: Welcome to Python Course
+    created_by: mgeenens
+    last_update_user: mgeenens
+    creation_date: 2023-04-05 00:00Z 
+    last_update: 2023-04-05 00:00Z
+
+# Content
+- model: courses.content
+  pk: 1
+  fields:
+    topic_id: 1
+    name: Introduction
+    description: Python Course is a webapp that allows users to publish contents related to python practicing.
+    created_by: mgeenens
+    last_update_user: mgeenens
+    creation_date: 2023-04-05 00:00Z 
+    last_update: 2023-04-05 00:00Z
+- model: courses.content
+  pk: 2
+  fields:
+    topic_id: 1
+    name: How to use
+    description: Here, you can have an idea on how to use this webapp.
+    created_by: mgeenens
+    last_update_user: mgeenens
+    creation_date: 2023-04-05 00:00Z 
+    last_update: 2023-04-05 00:00Z
+
+# Content Part
+- model: courses.contentpart
+  pk: 1
+  fields:
+    content_id: 1
+    type_id: 1
+    section_number: 1
+    title: Goal
+    text: The aim of that site is to learn about python programming, from basic to advanced topics.
+    created_by: mgeenens
+    last_update_user: mgeenens
+    creation_date: 2023-04-05 00:00Z 
+    last_update: 2023-04-05 00:00Z
+
+- model: courses.contentpart
+  pk: 2
+  fields:
+    content_id: 2
+    type_id: 1
+    section_number: 1
+    title: Text Content
+    text: You can publish simple text contents, formatted as you see here.
+    created_by: mgeenens
+    last_update_user: mgeenens
+    creation_date: 2023-04-05 00:00Z 
+    last_update: 2023-04-05 00:00Z
+- model: courses.contentpart
+  pk: 3
+  fields:
+    content_id: 2
+    type_id: 2
+    section_number: 2
+    title: Code Content
+    text: You can publish code formatted contents.
+    created_by: mgeenens
+    last_update_user: mgeenens
+    creation_date: 2023-04-05 00:00Z 
+    last_update: 2023-04-05 00:00Z
+- model: courses.contentpart
+  pk: 4
+  fields:
+    content_id: 2
+    type_id: 3
+    section_number: 3
+    title: Note Content
+    text: You can publish contents as a note, or remark.
+    created_by: mgeenens
+    last_update_user: mgeenens
+    creation_date: 2023-04-05 00:00Z 
+    last_update: 2023-04-05 00:00Z
