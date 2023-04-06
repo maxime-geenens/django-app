@@ -1,0 +1,29 @@
+{% extends "base1.html" %}
+{% block csshead %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'courses/css/style.css' %}"/>
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <div class="formWrapper">
+    <h2 class="head">Log In</h2>
+    <div class="form">
+      <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="button">
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="back">
+      <a href="{% url 'index' %}">
+        <img src="{% static 'courses/img/back.png' %}"
+                 alt="Back"
+                 width="100"
+                 height="100"/>
+      </a>
+    </div>
+  </div>
+{% endblock %}

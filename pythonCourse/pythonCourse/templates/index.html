@@ -1,0 +1,22 @@
+{% extends "base1.html" %}
+{% block csshead %}
+    {% load static %}
+{% endblock %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    <div class="indexWrapper">
+        <h3 class="head">Welcome to Python Course!</h3>
+        <div class="login">
+            <a href="accounts/login">LOG IN</a>
+        </div>
+        <div class="register">
+            <a href="#">REGISTER</a>
+        </div>
+        <div class="img">
+            <img src="{% static 'courses/img/python_logo.png' %}"
+                 alt="Python Logo"
+                 width="200"
+                 height="200"/>
+        </div>
+    </div>
+{% endblock %}

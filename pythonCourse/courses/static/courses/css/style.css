@@ -2,3 +2,92 @@
 body {
   background-color: rgb(211, 193, 193);
 }
+
+.button {
+  text-align: center;
+  padding: 1%;
+}
+
+/* NAVBAR */
+.dropdown-item {
+  color: aliceblue;
+}
+
+.navbar-brand {
+  color: aliceblue;
+}
+
+.nav-link {
+  color: aliceblue;
+}
+
+/* INDEX */
+.indexWrapper {
+  display: grid;
+  grid-template-areas:
+    "head head head head head"
+    ". login img register .";
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 0.5fr 1fr;
+  gap: 5%;
+  padding: 1%;
+  align-items: center;
+}
+
+.head {
+  grid-area: head;
+  padding: 2%;
+  text-align: center;
+}
+
+.login {
+  grid-area: login;
+  padding: 1%;
+  text-align: center;
+  border: 1px solid gray;
+  font-weight: bold;
+}
+
+.register {
+  grid-area: register;
+  text-align: center;
+  padding: 1%;
+  border: 1px solid gray;
+  font-weight: bold;
+}
+
+.img {
+  grid-area: img;
+  width: 100%;
+  padding: 5%;
+  text-align: center;
+}
+
+/* FORMS */
+.formWrapper {
+  display: grid;
+  grid-template-areas:
+    "head head head head head"
+    ". . form . ."
+    ". . . . back";
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 0.25fr 1fr 1fr;
+  gap: 5%;
+  padding: 1%;
+  align-items: center;
+}
+
+.form {
+  grid-area: form;
+  padding: 2%;
+  text-align: center;
+  border: 1px solid gray;
+  font-weight: bold;
+}
+
+.back {
+  grid-area: back;
+  padding: 1%;
+  text-align: center;
+  justify-self: self-end;
+}
