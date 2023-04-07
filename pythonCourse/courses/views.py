@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
@@ -10,6 +11,7 @@ base_context: dict = {
 }
 
 
+@login_required
 def home(request):
     return render(request, 'courses/home.html', base_context)
 
@@ -18,6 +20,7 @@ def navbar(request):
     return render(request, 'courses/navbar.html', base_context)
 
 
+@login_required
 def topic(request, pk):
     try:
         topic = Topic.objects.get(pk=pk)
@@ -31,6 +34,7 @@ def topic(request, pk):
     return render(request, 'courses/topic.html',  merge(base_context, context))
 
 
+@login_required
 def content(request, topic_id, pk):
     try:
         content = Content.objects.get(pk=pk)
@@ -48,10 +52,12 @@ def content(request, topic_id, pk):
     return render(request, 'courses/content.html', merge(base_context, context))
 
 
+@login_required
 def create(request):
     return render(request, 'courses/create.html', base_context)
 
 
+@login_required
 def createTopic(request):
     if request.method == "POST":
         form = TopicForm(request.POST)
@@ -67,6 +73,7 @@ def createTopic(request):
     return render(request, 'courses/createTopic.html', merge(base_context, context))
 
 
+@login_required
 def createContent(request):
     if request.method == "POST":
         form = ContentForm(request.POST)
@@ -93,6 +100,7 @@ def createContent(request):
     return render(request, 'courses/createContent.html', merge(base_context, context))
 
 
+@login_required
 def createContentPart(request):
     cp = ContentPart()
     if request.method == "POST":

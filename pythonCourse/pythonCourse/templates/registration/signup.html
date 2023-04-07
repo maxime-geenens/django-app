@@ -4,10 +4,10 @@
   <link rel="stylesheet" href="{% static 'courses/css/style.css' %}"/>
 {% endblock %}
 {% load crispy_forms_tags %}
-{% block title %}Login{% endblock %}
+{% block title %}Sign Up{% endblock %}
 {% block content %}
-  <div class="loginWrapper">
-    <h2 class="head">Log In</h2>
+  <div class="signupWrapper">
+    <h2 class="head">Sign Up</h2>
     <div class="form">
       <form method="post">
         {% csrf_token %}
