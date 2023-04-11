@@ -8,7 +8,7 @@
 {% block content %}
     <div class="topicWrapper">
         <div class="head">
-            <h3>{{ topic.name }}</h3>
+            <h3 title="{{ topic.creation_date_info }} | {{ topic.update_date_info }}">{{ topic.name }}</h3>
         </div>
         <div class="list">
             <h4>Content List</h4>

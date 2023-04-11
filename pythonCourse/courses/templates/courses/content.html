@@ -7,14 +7,15 @@
 {% block title %}Content{% endblock %}
 {% block content %}
   <div class="contentWrapper">
-    <h1 class="head">{{ content.name }}</h1>
+    <h1 class="head"
+        title="{{ content.creation_date_info }} | {{ content.update_date_info }}">{{ content.name }}</h1>
     <div class="content">
       {% if content_parts %}
         <ul>
           {% for content_part in content_parts %}
             <li>
               <div class="subtitle">
-                <h5>{{ content_part.title }}</h5>
+                <h5 title="{{ content_part.creation_date_info }} | {{ content_part.update_date_info }}">{{ content_part.title }}</h5>
               </div>
               <div>
                 {% if content_part.type_id == 2 %}
