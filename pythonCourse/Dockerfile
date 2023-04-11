@@ -1,4 +1,11 @@
-FROM python:3.10.5
+FROM ubuntu:20.04
+
+# Install required packages
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends python3 \
+    python3-pip \
+    python3-setuptools \
+    python3-pytest
 
 # Set environment variables
 ENV DockerHOME=/home/app/webapp

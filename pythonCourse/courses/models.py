@@ -1,7 +1,7 @@
 from django.db.models import (CASCADE, CharField, DateTimeField, ForeignKey,
                               Model, TextField, IntegerField)
 
-from .utils.dateUtils import when_was_created
+from .utils.dateUtils import *
 
 
 class Topic(Model):
@@ -14,8 +14,11 @@ class Topic(Model):
     def __str__(self) -> str:
         return "{}".format(self.name)
 
-    def created_recently(self):
-        return when_was_created(self.creation_date)
+    def creation_date_info(self):
+        return creation_or_update_date_info(self.creation_date, None, self.created_by)
+
+    def update_date_info(self):
+        return creation_or_update_date_info(None, self.last_update, self.last_update_user)
 
 
 class Content(Model):
@@ -33,6 +36,12 @@ class Content(Model):
 
     def __str__(self) -> str:
         return "{}".format(self.name)
+
+    def creation_date_info(self):
+        return creation_or_update_date_info(self.creation_date, None, self.created_by)
+
+    def update_date_info(self):
+        return creation_or_update_date_info(None, self.last_update, self.last_update_user)
 
 
 class ContentType(Model):
@@ -65,3 +74,9 @@ class ContentPart(Model):
 
     def __str__(self) -> str:
         return "Content Part nº{}".format(self.section_number)
+
+    def creation_date_info(self):
+        return creation_or_update_date_info(self.creation_date, None, self.created_by)
+
+    def update_date_info(self):
+        return creation_or_update_date_info(None, self.last_update, self.last_update_user)
