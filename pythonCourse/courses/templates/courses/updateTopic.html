@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block csshead %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'courses/css/createScreen.css' %}"/>
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block title %}Create Topics{% endblock %}
+{% block content %}
+  <div class="createScreenWrapper">
+    <h1 class="head">Update some Topics</h1>
+    <div class="form">
+      <form action="{% url 'courses:topicUpdate' topic.id %}" method="post">
+        <fieldset>
+          <legend>
+            <h5>Update a Topic</h5>
+          </legend>
+          {% csrf_token %}
+          {{ form|crispy }}
+        </fieldset>
+        <div class="button">
+          <button type="submit" class="btn">Update</button>
+        </div>
+      </form>
+    </div>
+    <div class="list">
+      <h5>Update other Topics</h5>
+      {% if topic_list %}
+        <ul>
+          {% for topic in topic_list %}
+            <li>
+              <a href="{% url 'courses:topicUpdate' topic.id %}">{{ topic.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No topic created yet</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

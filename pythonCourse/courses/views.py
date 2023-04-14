@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user
 
 from .models import *
 from .forms import *
@@ -9,6 +10,8 @@ from .utils.dictUtils import *
 base_context: dict = {
     'topic_list': Topic.objects.all(),
 }
+
+# Basic screens
 
 
 @login_required
@@ -51,10 +54,14 @@ def content(request, topic_id, pk):
     }
     return render(request, 'courses/content.html', merge(base_context, context))
 
+# Create screens
+
 
 @login_required
 def create(request):
-    return render(request, 'courses/create.html', base_context)
+    context: dict = {
+    }
+    return render(request, 'courses/create.html', merge(base_context, context))
 
 
 @login_required
@@ -64,7 +71,8 @@ def createTopic(request):
         if form.is_valid():
             form.save()
     else:
-        form = TopicForm()
+        username = get_user(request).get_username()
+        form = TopicForm(initial={'created_by': username})
 
     context = {
         'form': form,
@@ -80,7 +88,8 @@ def createContent(request):
         if form.is_valid():
             form.save()
     else:
-        form = ContentForm()
+        username = get_user(request).get_username()
+        form = ContentForm(initial={'created_by': username})
 
     content_list = []
 
@@ -94,7 +103,7 @@ def createContent(request):
     context = {
         'form': form,
         'form2': form2,
-        'content_list': content_list
+        'content_list': content_list,
     }
 
     return render(request, 'courses/createContent.html', merge(base_context, context))
@@ -114,7 +123,8 @@ def createContentPart(request):
             new_part.save()
             form.save_m2m()
     else:
-        form = ContentPartForm()
+        username = get_user(request).get_username()
+        form = ContentPartForm(initial={'created_by': username})
 
     content_part_list = []
 
@@ -128,7 +138,42 @@ def createContentPart(request):
     context = {
         'form': form,
         'form2': form2,
-        'content_part_list': content_part_list
+        'content_part_list': content_part_list,
     }
 
     return render(request, 'courses/createContentPart.html', merge(base_context, context))
+
+
+# Update screens
+def topicUpdate(request, pk):
+
+    topic = Topic.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = TopicForm(request.POST, instance=topic)
+        if form.is_valid():
+            form.save()
+    else:
+        username = get_user(request).get_username()
+        form = TopicForm(
+            initial={
+                'last_update_user': username,
+                'last_update': timezone.now
+            },
+            instance=topic
+        )
+
+    context = {
+        'form': form,
+        'topic': topic,
+    }
+
+    return render(request, "courses/updateTopic.html", merge(base_context, context))
+
+
+def contentUpdate(request, id):
+    pass
+
+
+def contentPartUpdate(request, id):
+    pass

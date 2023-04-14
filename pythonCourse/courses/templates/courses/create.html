@@ -4,28 +4,47 @@
   <link rel="stylesheet" href="{% static 'courses/css/createScreen.css' %}"/>
 {% endblock %}
 {% load crispy_forms_tags %}
-{% block title %}Create Resources{% endblock %}
+{% block title %}Resources{% endblock %}
 {% block content %}
   <div class="createWrapper">
-    <h1 class="head">Create some resources for Python Course</h1>
-    <div class="list">
-      <ul>
-        <li>
-          <h4>
-            <a href="{% url 'courses:createTopic' %}">Create Topic</a>
-          </h4>
-        </li>
-        <li>
-          <h4>
-            <a href="{% url 'courses:createContent' %}">Create Content</a>
-          </h4>
-        </li>
-        <li>
-          <h4>
-            <a href="{% url 'courses:createContentPart' %}">Create a Content Part</a>
-          </h4>
-        </li>
-      </ul>
+    <h1 class="head">Manage Python Course Resources</h1>
+    <div class="topic">
+      <h5 class="head">Topics</h5>
+      <div class="create">
+        <a href="{% url 'courses:createTopic' %}" class="subtitle">Create a Topic</a>
+      </div>
+      <h6 class="update subtitle">Update:</h6>
+      <div class="list">
+        {% if topic_list %}
+          <ul>
+            {% for topic in topic_list %}
+              <li>
+                <a href="{% url 'courses:topicUpdate' topic.id %}">{{ topic.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No topic created yet</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="content">
+      <h5 class="head">Contents</h5>
+      <div class="create">
+        <a href="{% url 'courses:createContent' %}" class="subtitle">Create a Content</a>
+      </div>
+      <h6 class="update subtitle">Update:</h6>
+      <div class="form"></div>
+      <div class="list"></div>
+    </div>
+    <div class="contentPart">
+      <h5 class="head">Content Parts</h5>
+      <div class="create">
+        <a href="{% url 'courses:createContentPart' %}" class="subtitle">Create a Content Part</a>
+      </div>
+      <h6 class="update subtitle">Update:</h6>
+      <div class="form"></div>
+      <div class="list"></div>
     </div>
   </div>
 {% endblock %}

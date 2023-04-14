@@ -14,9 +14,10 @@
         <ul>
           {% for content_part in content_parts %}
             <li>
-              <div class="subtitle">
-                <h5 title="{{ content_part.creation_date_info }} | {{ content_part.update_date_info }}">{{ content_part.title }}</h5>
-              </div>
+              <h5 class="subtitle"
+                  title="{{ content_part.creation_date_info }} | {{ content_part.update_date_info }}">
+                {{ content_part.title }}
+              </h5>
               <div>
                 {% if content_part.type_id == 2 %}
                   <code class="code">
@@ -32,6 +33,7 @@
                   </div>
                 {% endif %}
               </div>
+              <br/>
             </li>
           {% endfor %}
         </ul>
@@ -40,7 +42,7 @@
       {% endif %}
     </div>
     <div class="list">
-      <h4>{{ content.topic.name }}:</h4>
+      <h5 class="subtitle">{{ content.topic.name }}:</h5>
       {% if content_list %}
         <ul>
           {% for content in content_list %}
