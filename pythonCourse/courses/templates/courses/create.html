@@ -9,7 +9,7 @@
   <div class="createWrapper">
     <h1 class="head">Manage Python Course Resources</h1>
     <div class="topic">
-      <h5 class="head">Topics</h5>
+      <h4 class="head">Topics</h4>
       <div class="create">
         <a href="{% url 'courses:createTopic' %}" class="subtitle">Create a Topic</a>
       </div>
@@ -29,22 +29,62 @@
       </div>
     </div>
     <div class="content">
-      <h5 class="head">Contents</h5>
+      <h4 class="head">Contents</h4>
       <div class="create">
         <a href="{% url 'courses:createContent' %}" class="subtitle">Create a Content</a>
       </div>
       <h6 class="update subtitle">Update:</h6>
-      <div class="form"></div>
-      <div class="list"></div>
+      <div class="formList">
+        <form method="get">
+          {% csrf_token %}
+          {{ form|crispy }}
+        </form>
+      </div>
+      <div class="list">
+        {% if content_list %}
+          <ul>
+            {% for content in content_list %}
+              <li>
+                <a href="{% url 'courses:contentUpdate' content.topic.id content.id %}">{{ content.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No Content created yet</p>
+        {% endif %}
+      </div>
     </div>
     <div class="contentPart">
-      <h5 class="head">Content Parts</h5>
+      <h4 class="head">Content Parts</h4>
       <div class="create">
         <a href="{% url 'courses:createContentPart' %}" class="subtitle">Create a Content Part</a>
       </div>
       <h6 class="update subtitle">Update:</h6>
-      <div class="form"></div>
-      <div class="list"></div>
+      <div class="formList">
+        <form method="get">
+          {% csrf_token %}
+          {{ form2|crispy }}
+        </form>
+        {% if content_list %}
+          <form method="get">
+            {% csrf_token %}
+            {{ form3|crispy }}
+          </form>
+        {% endif %}
+      </div>
+      <div class="list">
+        {% if content_part_list %}
+          <ul>
+            {% for content_part in content_part_list %}
+              <li>
+                <a href="{% url 'courses:contentPartUpdate' content_part.content.topic.id content_part.content.id content_part.id %}">{{ content_part.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No Content Part created yet</p>
+        {% endif %}
+      </div>
     </div>
   </div>
 {% endblock %}

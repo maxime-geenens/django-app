@@ -59,7 +59,37 @@ def content(request, topic_id, pk):
 
 @login_required
 def create(request):
+
+    content_list = []
+    content_part_list = []
+
+    if request.method == "GET":
+        form = ContentListForm(request.GET)
+        selected_topic = request.GET.get("topic")
+        content_list = Content.objects.all().filter(topic=selected_topic)
+    else:
+        form = ContentListForm()
+
+    if request.method == "GET":
+        form2 = ContentListForm(request.GET)
+        selected_topic = request.GET.get("topic")
+        content_list = Content.objects.all().filter(topic=selected_topic)
+    else:
+        form2 = ContentListForm()
+
+    if request.method == "GET":
+        form3 = ContentPartListForm(request.GET)
+        selected_content = request.GET.get("content")
+        content_part_list = ContentPart.objects.all().filter(content=selected_content)
+    else:
+        form3 = ContentListForm()
+
     context: dict = {
+        'form': form,
+        'form2': form2,
+        'form3': form3,
+        'content_list': content_list,
+        'content_part_list': content_part_list,
     }
     return render(request, 'courses/create.html', merge(base_context, context))
 
@@ -171,9 +201,31 @@ def topicUpdate(request, pk):
     return render(request, "courses/updateTopic.html", merge(base_context, context))
 
 
-def contentUpdate(request, id):
-    pass
+def contentUpdate(request, topic_id, pk):
+
+    content = Content.objects.get(id=pk)
+
+    if request.method == "POST":
+        form = ContentForm(request.POST, instance=content)
+        if form.is_valid():
+            form.save()
+    else:
+        username = get_user(request).get_username()
+        form = ContentForm(
+            initial={
+                'last_update_user': username,
+                'last_update': timezone.now
+            },
+            instance=content
+        )
+
+    context = {
+        'form': form,
+        'topic': content,
+    }
+
+    return render(request, "courses/updateContent.html", merge(base_context, context))
 
 
-def contentPartUpdate(request, id):
+def contentPartUpdate(request, topic_id, content_id, pk):
     pass

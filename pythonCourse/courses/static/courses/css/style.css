@@ -3,6 +3,12 @@ body {
   background-color: rgb(201, 231, 248);
 }
 
+h5,
+h6 {
+  color: darkcyan;
+  font-weight: bold;
+}
+
 .button {
   text-align: center;
   padding: 1%;

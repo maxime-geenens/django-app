@@ -14,13 +14,13 @@
   grid-area: topic;
   display: grid;
   grid-template-areas:
-    "head head"
-    "create create"
-    "update formList"
-    "list list";
-  grid-template-columns: auto 1fr;
-  grid-template-rows: repeat(3, 0.25fr) auto;
-  gap: 2%;
+    "head"
+    "create"
+    "update"
+    "list";
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto) 1fr;
+  gap: 1%;
   padding: 1%;
   border: 1px solid gray;
 }
@@ -29,12 +29,13 @@
   grid-area: content;
   display: grid;
   grid-template-areas:
-    "head head"
-    "create create"
-    "update formList"
-    "list list";
-  grid-template-columns: auto 1fr;
-  grid-template-rows: repeat(3, 0.25fr) auto;
+    "head"
+    "create"
+    "formList"
+    "update"
+    "list";
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, auto) 1fr;
   gap: 2%;
   padding: 1%;
   border: 1px solid gray;
@@ -44,12 +45,13 @@
   grid-area: contentPart;
   display: grid;
   grid-template-areas:
-    "head head"
-    "create create"
-    "update formList"
-    "list list";
-  grid-template-columns: auto 1fr;
-  grid-template-rows: repeat(3, 0.25fr) auto;
+    "head"
+    "create"
+    "formList"
+    "update"
+    "list";
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, auto) 1fr;
   gap: 2%;
   padding: 1%;
   border: 1px solid gray;
@@ -79,6 +81,7 @@
 .update {
   grid-area: update;
   padding: 1%;
+  padding-left: 5%;
 }
 
 /* CREATE SCREEN */
