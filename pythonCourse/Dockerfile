@@ -16,12 +16,11 @@ ENV VIRTUAL_ENV=/opt/venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# Install dependencies:
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
 # Copy app files to workdir
 COPY ./pythonCourse ${DockerHOME}
+
+# Install dependencies:
+RUN pip install -r requirements.txt
 
 RUN python3 manage.py makemigrations && \
   python3 manage.py makemigrations courses && \
