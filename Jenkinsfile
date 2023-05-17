@@ -27,9 +27,12 @@ pipeline {
             }
         }
         stage('Unit Test') {
+            agent {
+                docker { image 'python:3.10' }
+            }
             steps {
                 echo "Testing version ${VERSION}..."
-                echo "Some tests to do..."
+                echo 'testing...'
             }
         }
         stage('Deploy') {

@@ -1,11 +1,4 @@
-FROM ubuntu:20.04
-
-# Install required packages
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends python3 \
-  python3-pip \
-  python3-setuptools \
-  python3-pytest
+FROM python:3.10.5
 
 # Set environment variables
 ENV DockerHOME=/home/app/webapp
@@ -19,16 +12,16 @@ WORKDIR ${DockerHOME}
 RUN python3 -m pip install --upgrade pip
 
 # Create and use virtual environment
-RUN python3 -m pip install virtualenv && \
-  virtualenv --version
-RUN python3 -m virtualenv .venv &&\
-  . .venv/bin/activate
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Install dependencies:
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
 # Copy app files to workdir
 COPY ./pythonCourse ${DockerHOME}
-
-# Install requirements
-RUN python3 -m pip install -r requirements.txt
 
 RUN python3 manage.py makemigrations && \
   python3 manage.py makemigrations courses && \
